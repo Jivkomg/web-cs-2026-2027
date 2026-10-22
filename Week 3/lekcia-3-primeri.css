@@ -1,0 +1,625 @@
+/* =====================================================================
+   ПРИМЕРИ ОТ ЛЕКЦИЯ 3: CSS (част 1)
+
+   Стиловете за lekcia-3-primeri.html, подредени по раздели от лекцията.
+
+   ⚠️ В лекцията примерите са написани най-просто, например:
+         .note { color: green; }
+      Тук повечето са с id на секцията отпред, например:
+         #s-kaskada .note { color: green; }
+      Причината: всички примери са на една страница и без това биха се
+      „били" помежду си. Това е селектор за наследник от раздел 3:
+      „.note, но само вътре в #s-kaskada".
+   ===================================================================== */
+
+
+/* =====================================================================
+   ОСНОВНИ СТИЛОВЕ ЗА ЦЯЛАТА СТРАНИЦА
+   (примерите от раздели 2, 3, 8 и 11, които важат навсякъде)
+   ===================================================================== */
+
+/* Раздел 11: всички кутии се мерят с border-box
+   (width включва padding и border). Стандартен първи ред. */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Раздел 8: шрифтът и цветът се НАСЛЕДЯВАТ от body от всички елементи */
+body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;  /* първият наличен; накрая общо семейство */
+    font-size: 1rem;     /* 16px */
+    line-height: 1.6;    /* число без единица */
+    color: #222;
+    max-width: 50rem;    /* редовете не стават прекалено дълги */
+    margin: 0 auto;      /* раздел 11: центриране на блок */
+    padding: 0 1rem 4rem;
+}
+
+/* Раздел 2: синтаксис, няколко декларации за един селектор */
+h1 {
+    color: #1f4e79;
+    font-size: 2rem;     /* 2 × 16px = 32px */
+}
+
+/* Раздел 2: един стил за няколко селектора наведнъж */
+h2, h3 {
+    color: #1f4e79;
+}
+
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #e8eef5;
+    padding-bottom: 0.25rem;
+    margin-top: 3rem;
+}
+
+h3 {
+    font-size: 1.125rem;
+    margin: 1.5rem 0 0.5rem;   /* горе · ляво/дясно · долу */
+}
+
+/* Раздел 8: шрифт за код */
+code {
+    font-family: Consolas, "Courier New", monospace;
+    background-color: #f2f5f9;
+    padding: 0 0.25em;
+}
+
+/* Раздел 3: линкът се подчертава само при посочване */
+a {
+    color: #1f4e79;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Раздел 3: стрелка след всеки външен линк (атрибут, който започва с https) */
+a[href^="https"]::after {
+    content: " ↗";
+}
+
+/* Раздел 3: видима рамка при фокус */
+input:focus {
+    outline: 2px solid #1f4e79;
+}
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #f2a900;
+    outline-offset: 2px;
+}
+
+/* Раздел 3: по-блед текст в placeholder-а */
+input::placeholder {
+    color: #888;
+}
+
+/* Кутията около всеки пример: само за да се виждат примерите */
+.demo {
+    border: 1px dashed #9fb3c8;
+    padding: 1rem;
+    background-color: #fcfdfe;
+}
+
+.page-header {
+    padding: 1rem 0;
+}
+
+
+/* =====================================================================
+   1. ТРИ НАЧИНА ДА ДОБАВИМ CSS
+   ===================================================================== */
+
+/* Начин 3: правилото е тук, във външния файл.
+   (Начин 1 е в style атрибута в HTML-а, а начин 2 е в <style> в <head>.) */
+#s-nachini .from-file {
+    color: #1f4e79;
+}
+
+
+/* =====================================================================
+   3. СЕЛЕКТОРИ
+   ===================================================================== */
+
+/* h2 + p: параграфът ТОЧНО след h2 */
+#s-selektori h2 + p {
+    font-size: 1.125rem;
+}
+
+/* Клас */
+#s-selektori .price {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+/* id */
+#s-selektori #current {
+    font-weight: bold;
+}
+
+/* Наследник: <a> някъде вътре в .menu */
+#s-selektori .menu a {
+    color: #b5373a;
+}
+
+/* Псевдоклас: първото дете */
+#s-selektori .list li:first-child {
+    font-weight: bold;
+}
+
+/* Псевдоклас: всеки втори ред на таблицата */
+#s-selektori tbody tr:nth-child(2n) {
+    background-color: #f2f5f9;
+}
+
+#s-selektori table {
+    border-collapse: collapse;   /* рамките на съседните клетки се сливат в една */
+}
+
+#s-selektori th,
+#s-selektori td {
+    border: 1px solid #ccc;
+    padding: 0.25rem 0.75rem;
+    text-align: left;
+}
+
+
+/* =====================================================================
+   4. КАСКАДА, СПЕЦИФИЧНОСТ, НАСЛЕДЯВАНЕ
+   ===================================================================== */
+
+/* Таг (1,0,1 с id-то на секцията) срещу клас (1,1,1): класът печели → зелено */
+#s-kaskada .demo p {
+    color: blue;
+}
+#s-kaskada .demo .note {
+    color: green;
+}
+
+/* id (2,0,0) бие клас (1,1,1) → лилаво */
+#s-kaskada #special {
+    color: purple;
+}
+
+/* Две правила с еднаква специфичност: печели ПОСЛЕДНОТО → зелено */
+#s-kaskada .badge {
+    background-color: #b5373a;
+    color: #fff;
+    padding: 0.2em 0.5em;
+}
+#s-kaskada .badge {
+    background-color: #2e7d32;
+}
+
+/* !important бие дори id. Само за пример: в истински код го избягвайте. */
+#s-kaskada #special-2 {
+    color: purple;
+}
+#s-kaskada .forced {
+    color: orange !important;
+}
+
+/* Наследяване: color и font-style се наследяват, border НЕ */
+#s-kaskada .parent {
+    color: #b5373a;
+    font-style: italic;
+    border: 2px solid #b5373a;
+    padding: 0.5rem;
+}
+/* Детето <p> иначе би станало синьо от първото правило в този раздел.
+   Връщаме го към наследяването с inherit, за да се види ефектът. */
+#s-kaskada .parent p {
+    color: inherit;
+}
+
+
+/* =====================================================================
+   6. ЦВЕТОВЕ
+   ===================================================================== */
+
+/* Общ вид на цветните квадратчета */
+#s-cvetove .swatch {
+    display: inline-block;   /* раздел 10: в реда, но с размери */
+    width: 9rem;
+    padding: 1rem 0.5rem;
+    margin: 0 0.5rem 0.5rem 0;
+    color: #fff;
+    text-align: center;
+}
+
+/* Един и същ цвят по пет начина */
+#s-cvetove .c-name  { background-color: tomato; }
+#s-cvetove .c-hex   { background-color: #ff6347; }
+#s-cvetove .c-rgb   { background-color: rgb(255 99 71); }
+#s-cvetove .c-hsl   { background-color: hsl(9 100% 64%); }
+#s-cvetove .c-alpha { background-color: rgb(255 99 71 / 40%); color: #222; }  /* полупрозрачен */
+
+/* По-тъмен вариант с HSL: само последното число се променя */
+#s-cvetove .btn {
+    background-color: hsl(210 60% 40%);
+    color: #fff;
+    border: 0;
+    padding: 0.5rem 1rem;
+}
+#s-cvetove .btn:hover {
+    background-color: hsl(210 60% 30%);
+}
+
+/* Контраст: проверете ги с палитрата в DevTools */
+#s-cvetove .low-contrast  { background-color: #9bc010; }  /* около 2 : 1 */
+#s-cvetove .good-contrast { background-color: #1f4e79; }  /* над 4.5 : 1 */
+
+
+/* =====================================================================
+   7. МЕРНИ ЕДИНИЦИ
+   ===================================================================== */
+
+/* vh: процент от височината на прозореца */
+#s-edinici .hero {
+    min-height: 40vh;
+    background-color: #e8eef5;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+#s-edinici .hero-title {
+    font-size: 1.5rem;   /* rem: спрямо <html> */
+    margin: 0;
+}
+
+/* %: спрямо ширината на родителя */
+#s-edinici .half {
+    width: 50%;
+    background-color: #f2f5f9;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* px за рамката, em за отстоянието (расте заедно с текста в картата) */
+#s-edinici .card {
+    border: 1px solid #ccc;
+    padding: 1.5em;
+}
+
+/* Капанът с em: всяко ниво е 1.2 × родителя → натрупва се */
+#s-edinici .em-list li {
+    font-size: 1.2em;
+}
+
+/* rem: всяко ниво е 1.2 × <html> → еднакво */
+#s-edinici .rem-list li {
+    font-size: 1.2rem;
+}
+
+
+/* =====================================================================
+   8. ТЕКСТ И ШРИФТОВЕ
+   ===================================================================== */
+
+/* В HTML-а пише „Регистрация"; главните букви са от CSS */
+#s-tekst .title-upper {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    font-weight: bold;
+}
+
+#s-tekst .old-price {
+    text-decoration: line-through;
+    color: #888;
+}
+
+#s-tekst .justified {
+    text-align: justify;
+}
+
+/* font-weight с числа */
+#s-tekst .light { font-weight: 300; }
+#s-tekst .heavy { font-weight: 800; }
+
+/* Кратък запис font: стил тегло размер/височина-на-реда семейство */
+#s-tekst .quote {
+    font: italic bold 1.125rem/1.5 Georgia, serif;
+}
+/* Задължителни са само размер и семейство */
+#s-tekst .plain {
+    font: 1rem Verdana, sans-serif;
+}
+
+
+/* =====================================================================
+   9. ФОН
+   ===================================================================== */
+
+/* Общ вид на кутиите с фон */
+#s-fon .bg-box {
+    height: 6rem;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Само цвят */
+#s-fon .bg-color {
+    background-color: #e8eef5;
+    color: #1f4e79;
+}
+
+/* Градиентът е „картинка", генерирана от CSS, без файл */
+#s-fon .bg-gradient {
+    background-image: linear-gradient(to right, #1f4e79, #6a9bd1);
+}
+
+/* Повтаряща се шарка: точка, повторена на всеки 20px */
+#s-fon .bg-dots {
+    background-image: radial-gradient(circle, #9fb3c8 2px, transparent 2px);
+    background-size: 20px 20px;
+    background-repeat: repeat;
+    color: #1f4e79;
+}
+
+/* Кратък запис: цвят, снимка, повторение, позиция / размер.
+   snimka.jpg нарочно липсва (в Console ще видите грешка 404):
+   резервният цвят остава и текстът се чете. */
+#s-fon .bg-photo {
+    background: #1f4e79 url("snimka.jpg") no-repeat center / cover;
+}
+
+
+/* =====================================================================
+   10. DISPLAY
+   ===================================================================== */
+
+/* Хоризонтално меню без flex: точките стават inline-block */
+#s-display .inline-menu {
+    padding: 0;
+    list-style: none;       /* без точки пред елементите */
+}
+#s-display .inline-menu li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+/* Етикет в текста: в реда, но с padding и фон */
+#s-display .tag {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    background-color: #e8eef5;
+    font-size: 0.875rem;
+}
+
+/* Линкът заема целия ред: по-голяма площ за кликване */
+#s-display .big-link {
+    display: block;
+    padding: 1rem;
+    background-color: #f2f5f9;
+}
+
+/* Буквите A B C */
+#s-display .letter {
+    display: inline-block;
+    width: 2.5rem;
+    padding: 0.5rem 0;
+    margin-right: 0.25rem;
+    background-color: #1f4e79;
+    color: #fff;
+    text-align: center;
+}
+
+/* Три начина да скрием B */
+#s-display .hide-display    { display: none; }      /* C се премества на мястото на B */
+#s-display .hide-visibility { visibility: hidden; } /* празно място */
+#s-display .hide-opacity    { opacity: 0; }         /* празно място, но може да се кликне */
+
+/* Визуално скрит етикет: невидим, но екранният четец го чете.
+   Тук без #s-display, защото е помощен клас за цялата страница. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* =====================================================================
+   11. BOX MODEL
+   ===================================================================== */
+
+/* content-box: 300 + 2×20 padding + 2×5 border = 350px на екрана */
+#s-box .box-content {
+    box-sizing: content-box;
+    width: 300px;
+    padding: 20px;
+    border: 5px solid #1f4e79;
+    margin-bottom: 1rem;
+}
+
+/* border-box: точно 300px; съдържанието се свива */
+#s-box .box-border {
+    box-sizing: border-box;
+    width: 300px;
+    padding: 20px;
+    border: 5px solid #1f4e79;
+}
+
+/* Кратък запис с 2 стойности: горе/долу · ляво/дясно */
+#s-box .btn-pad {
+    padding: 0.5rem 1.5rem;
+}
+
+/* border-width с 2 стойности: дебела рамка горе и долу */
+#s-box .frame {
+    border-style: solid;
+    border-color: #1f4e79;
+    border-width: 4px 1px;
+    padding: 0.5rem;
+}
+
+/* Центриране: auto разделя свободното място поравно */
+#s-box .centered {
+    width: 400px;
+    max-width: 100%;       /* на тесен екран не излиза извън страницата */
+    margin: 0 auto;
+    padding: 0.5rem;
+    background-color: #e8eef5;
+    text-align: center;
+}
+
+/* Сливане на margin-и: между двата блока има 30px, не 50px */
+#s-box .first,
+#s-box .second {
+    background-color: #f2f5f9;
+    padding: 0.5rem;
+}
+#s-box .first  { margin-bottom: 20px; }
+#s-box .second { margin-top: 30px; }
+
+
+/* =====================================================================
+   12. POSITION
+   ===================================================================== */
+
+/* relative: отместване, мястото остава заето */
+#s-position .nudge {
+    position: relative;
+    top: 5px;
+    left: 20px;
+    background-color: #ffe9a8;
+}
+
+/* absolute: значка в ъгъла на картата.
+   Картата е relative, затова е „отправната точка" на значката. */
+#s-position .card-pos {
+    position: relative;
+    border: 1px solid #ccc;
+    padding: 2rem 1rem 1rem;
+}
+#s-position .badge-pos {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #b5373a;
+    color: #fff;
+    padding: 0.1em 0.5em;
+}
+
+/* sticky: вътре в кутия със скролбар */
+#s-position .sticky-demo {
+    height: 180px;
+    overflow: auto;
+    border: 1px solid #ccc;
+}
+#s-position .sticky-title {
+    position: sticky;
+    top: 0;
+    margin: 0;
+    padding: 0.5rem;
+    background-color: #1f4e79;
+    color: #fff;
+}
+#s-position .sticky-demo p {
+    padding: 0 0.5rem;
+}
+
+/* fixed: бутон „Нагоре" винаги в долния десен ъгъл на екрана */
+.to-top {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #1f4e79;
+    color: #fff;
+}
+
+
+/* =====================================================================
+   13. FLOAT + CLEAR
+   ===================================================================== */
+
+/* Родителят обхваща плаващото дете (съвременно решение) */
+#s-float .contains-floats {
+    display: flow-root;
+    border: 2px solid #9fb3c8;
+    padding: 1rem;
+}
+
+/* „Снимката" плава вдясно, текстът я обтича */
+#s-float .float-photo {
+    float: right;
+    width: 150px;
+    height: 120px;
+    margin: 0 0 1rem 1rem;      /* отстояние само отляво и отдолу, към текста */
+    background-color: #e0a85a;
+    text-align: center;
+    padding-top: 45px;
+}
+
+/* Започва под плаващите елементи */
+#s-float .after-photo {
+    clear: both;
+    background-color: #f2f5f9;
+    padding: 0.5rem;
+}
+
+/* Старото решение (clearfix): тук само за сравнение, не се използва в HTML-а */
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+/* =====================================================================
+   14. ДРУГИ ПОЛЕЗНИ СВОЙСТВА
+   ===================================================================== */
+
+/* z-index: синята кутия е отгоре, защото числото ѝ е по-голямо */
+#s-drugi .layers {
+    position: relative;   /* отправна точка за двете кутии */
+    height: 120px;
+}
+#s-drugi .layer {
+    position: absolute;
+    width: 120px;
+    height: 80px;
+    padding: 0.5rem;
+    color: #fff;
+}
+#s-drugi .layer.red  { top: 0;    left: 0;    z-index: 1; background-color: #b5373a; }
+#s-drugi .layer.blue { top: 30px; left: 60px; z-index: 2; background-color: #1f4e79; }
+
+/* opacity: избледнял вид */
+#s-drugi .faded {
+    opacity: 0.5;
+}
+
+/* overflow: скролбар само при нужда */
+#s-drugi .scroll-box {
+    height: 100px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    padding: 0 0.5rem;
+}
+
+/* vertical-align в клетка на таблица */
+#s-drugi .va-table td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+#s-drugi .va-table .tall {
+    height: 100px;
+}
+
+/* cursor */
+#s-drugi .clickable {
+    cursor: pointer;
+}
+#s-drugi button:disabled {
+    cursor: not-allowed;
+}

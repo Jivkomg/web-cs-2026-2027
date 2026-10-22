@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--
+    greshki.html С КОМЕНТАРИ
+
+    Същата страница с 16 грешки, но под всяка грешка има коментар:
+    ❌ каква е грешката, 🤔 защо е проблем, ✅ как се поправя.
+    Номерата съвпадат с greshki-otgovori.md.
+
+    [В] = валидаторът я хваща.  [F12] = намира се само с използване и DevTools.
+-->
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кафене „Алгоритъм“</title>
+</head>
+<body>
+    <header>
+        <center>
+        <!--
+            ГРЕШКА 1 [В]
+            ❌ <center> е премахнат елемент.
+            🤔 Той описва как изглежда страницата (центрирано), а външният вид е работа на CSS.
+               В HTML5 вече не съществува. Валидаторът дава Error.
+            ✅ Махнете <center> и </center>. В CSS: header { text-align: center; }
+        -->
+            <h1>Кафене „Алгоритъм“</h1>
+        </center>
+        <p align="right">Кафето на ФМИ от 2010 г.</p>
+        <!--
+            ГРЕШКА 2 [В]
+            ❌ Атрибутът align е остарял.
+            🤔 Пак външен вид в HTML-а. Браузърът още го рисува, затова валидаторът дава само Warning.
+            ✅ <p class="since">Кафето на ФМИ от 2010 г.</p> и в CSS: .since { text-align: right; }
+        -->
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#menu">Меню</a></li>
+            <!--
+                ГРЕШКА 3 [F12]
+                ❌ Линкът води към #menu, а секцията долу е с id="Menu".
+                🤔 id е чувствителен към главни и малки букви: menu и Menu са различни.
+                   Кликът не води никъде. Валидаторът не я хваща: и двете стойности са валидни.
+                ✅ Еднакво изписване: id="menu" на секцията.
+            -->
+            <li><a href="#order">Поръчка</a></li>
+            <li><a href="#location">Как да ни намерите</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="divider" />
+        <!--
+            ГРЕШКА 4 [В]
+            ❌ /> не затваря <div>. Браузърът игнорира наклонената черта и чете отварящ таг.
+            🤔 Цялото съдържание на <main> попада ВЪТРЕ в този <div> (вижте в Elements).
+               Ако .divider получи стил (например height: 1px; overflow: hidden;), менюто изчезва.
+               Валидаторът дава 3 съобщения за тази една грешка:
+               „Self-closing syntax", „End tag main seen, but there were open elements" и „Unclosed element div".
+            ✅ <div class="divider"></div> или по-добре <hr>, ако е разделителна линия.
+               /> е позволено само на празни елементи: <br>, <img>, <input>…
+        -->
+
+        <section id="Menu">
+            <b>Меню</b>
+            <!--
+                ГРЕШКА 5 [В, косвено]
+                ❌ <b> е използван като заглавие.
+                🤔 Изглежда като заглавие, но не е: екранният четец и Google не го виждат като заглавие.
+                   Валидаторът не знае, че <b> трябваше да е заглавие. Вижда само последствието:
+                   долу <h3> идва веднага след <h1> и прескача ниво.
+                ✅ <h2>Меню</h2>
+            -->
+
+            <table border="1">
+            <!--
+                ГРЕШКА 6 [В]
+                ❌ Атрибутът border е остарял.
+                🤔 Рамката е външен вид. Браузърът още я рисува, затова е Warning.
+                   Подсказката на валидатора за img { border: 0; } е обща и тук не помага.
+                ✅ <table> без border, а в CSS: table, th, td { border: 1px solid #ccc; }
+            -->
+                <tr>
+                    <td><b>Напитка</b></td>
+                    <td><b>Цена</b></td>
+                </tr>
+                <!--
+                    ГРЕШКА 7 [F12]
+                    ❌ Заглавните клетки са обикновени <td> с удебелен текст. Таблицата няма и <caption>.
+                    🤔 Екранният четец не знае, че това са заглавия на колоните, и не ги прочита при всяка клетка.
+                       Валидаторът не я хваща: <td><b> е валиден HTML.
+                    ✅ <caption>Меню</caption>
+                       <thead><tr><th scope="col">Напитка</th><th scope="col">Цена</th></tr></thead>
+                       и останалите редове в <tbody>.
+                -->
+                <tr>
+                    <td>Еспресо</td>
+                    <td>2,50 лв.</td>
+                </tr>
+                <tr>
+                    <td>Капучино</td>
+                    <td>3,80 лв.</td>
+                </tr>
+                <tr>
+                    <td>Чай</td>
+                    <td>2,00 лв.</td>
+                </tr>
+            </table>
+
+            <h3>Речник на баристата</h3>
+            <dl>
+                <li><dt>Ристрето</dt></li>
+                <li><dd>Още по-късо и силно еспресо.</dd></li>
+                <li><dt>Лунго</dt></li>
+                <li><dd>Еспресо с повече вода.</dd></li>
+            </dl>
+            <!--
+                ГРЕШКА 8 [В]
+                ❌ <li> директно в <dl>.
+                🤔 <li> може да е само в <ul>, <ol> или <menu>. В <dl> директно може да има
+                   само <dt> и <dd> (или <div>, който ги групира).
+                   Валидаторът дава 4 съобщения: по едно за всеки <li>. Грешката е една.
+                ✅ <dl>
+                       <dt>Ристрето</dt>
+                       <dd>Още по-късо и силно еспресо.</dd>
+                       <dt>Лунго</dt>
+                       <dd>Еспресо с повече вода.</dd>
+                   </dl>
+            -->
+
+            <p>Съвет: в HTML новият ред се пише с <br> вместо с Enter.</p>
+            <!--
+                ГРЕШКА 9 [F12]
+                ❌ Авторът иска да покаже текста „<br>", а браузърът го прочита като истински таг.
+                🤔 На страницата думата <br> липсва, а изречението се разкъсва на два реда.
+                   Валидаторът не я хваща: <br> в параграф е валиден.
+                ✅ HTML entities: ... се пише с &lt;br&gt; вместо с Enter.
+                   (Още по-добре в <code>: <code>&lt;br&gt;</code>)
+            -->
+        </section>
+
+        <section id="order">
+            <h2>Поръчка</h2>
+
+            <form method="get">
+                <p>
+                    <label>Име</label>
+                    <input id="name" name="name" type="text" required>
+                </p>
+                <!--
+                    ГРЕШКА 10 [F12]
+                    ❌ <label> не е свързан с полето: няма for и полето не е вътре в него.
+                    🤔 Клик върху „Име" не активира полето. Екранният четец не казва „Име" при полето.
+                       Валидаторът не я хваща: <label> без for е валиден.
+                    ✅ <label for="name">Име</label> (for = id на полето)
+                       или полето вътре: <label>Име <input id="name" …></label>
+                -->
+
+                <p>
+                    <label for="qty">Брой</label>
+                    <input id="qty" type="number" min="1" max="10" value="1">
+                </p>
+                <!--
+                    ГРЕШКА 11 [F12]
+                    ❌ Полето няма атрибут name.
+                    🤔 Поле без name изобщо НЕ се изпраща към сървъра.
+                       Изпратете формата: в адресната лента има ?name=…, но липсва qty.
+                    ✅ <input id="qty" name="qty" type="number" min="1" max="10" value="1">
+                -->
+
+                <p>Размер:</p>
+                <p>
+                    <label><input type="radio" name="size" value="small"> Малко</label>
+                    <label><input type="radio" name="cup-size" value="large"> Голямо</label>
+                </p>
+                <!--
+                    ГРЕШКА 12 [F12]
+                    ❌ Двата радио бутона са с различен name: size и cup-size.
+                    🤔 Различен name = различни групи. Може да изберете и двата едновременно.
+                       Сървърът получава две отделни стойности.
+                    ✅ Еднакъв name="size" и групата в <fieldset> с <legend>:
+                       <fieldset>
+                           <legend>Размер</legend>
+                           <label><input type="radio" name="size" value="small"> Малко</label>
+                           <label><input type="radio" name="size" value="large"> Голямо</label>
+                       </fieldset>
+                -->
+
+                <p>
+                    <label for="note">Бележка към баристата</label><br>
+                    <textarea id="note" name="note" disabled="false"></textarea>
+                </p>
+                <!--
+                    ГРЕШКА 13 [В]
+                    ❌ disabled="false".
+                    🤔 disabled е булев атрибут: има значение само ДАЛИ го има, а не каква е стойността.
+                       Полето е неактивно, въпреки че пише false. И не се изпраща със формата.
+                    ✅ Махнете disabled изцяло: <textarea id="note" name="note"></textarea>
+                -->
+
+                <button type="submit">Поръчай</button>
+                <button>Откажи</button>
+                <!--
+                    ГРЕШКА 14 [F12]
+                    ❌ Вторият бутон няма type.
+                    🤔 <button> във форма без type е type="submit". „Откажи" ИЗПРАЩА поръчката.
+                       Кликнете и вижте как адресът се променя.
+                    ✅ <button type="reset">Откажи</button>, ако трябва да изчисти полетата,
+                       или <button type="button">, ако само ще прави нещо с JavaScript.
+                -->
+            </form>
+        </section>
+
+        <section id="location">
+            <h2>Как да ни намерите</h2>
+            <iframe src="https://www.google.com/" width="400" height="300"></iframe>
+            <!--
+                ГРЕШКА 15 [F12]
+                ❌ Google не позволява да бъде вграждан, а <iframe> няма title.
+                🤔 Фреймът остава празен, а в Console има грешка, че страницата отказва вграждане.
+                   Сайтовете се пазят така от clickjacking. Без title екранният четец не знае какво има във фрейма.
+                ✅ Адрес, който позволява вграждане, и title:
+                   <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=23.326,42.672,23.334,42.677&amp;layer=mapnik"
+                           title="Карта: кафене „Алгоритъм“" width="400" height="300"></iframe>
+            -->
+
+            <h3>Видео от кафенето</h3>
+            <video width="320" height="240">
+                <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+            </video>
+            <!--
+                ГРЕШКА 16 [F12]
+                ❌ <video> няма атрибута controls.
+                🤔 Няма бутони за пускане: видеото не може да се пусне.
+                ✅ <video width="320" height="240" controls>
+            -->
+        </section>
+    </main>
+    <!--
+        Тук е „End tag main seen, but there were open elements" от валидатора:
+        <div class="divider" /> от грешка 4 още е отворен. Изчезва, щом поправите грешка 4.
+    -->
+
+    <footer>
+        <p>&copy; 2026 Кафене „Алгоритъм“</p>
+    </footer>
+</body>
+</html>

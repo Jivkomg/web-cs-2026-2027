@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<!--
+    ПРИМЕРИ ОТ ЛЕКЦИЯ 3: CSS (част 1)
+
+    Всички примери от лекцията са тук, подредени по раздели.
+    Стиловете са в lekcia-3-primeri.css. Отворете двата файла един до друг
+    и разглеждайте всеки пример с Ctrl + Shift + C.
+
+    Всяка секция има id (s-selektori, s-kaskada…). В CSS файла примерите
+    са ограничени до своята секция с този id, за да не се бият помежду си.
+-->
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Примери: CSS (част 1)</title>
+
+    <!-- Начин 3: външен файл. Така се прави. -->
+    <link rel="stylesheet" href="lekcia-3-primeri.css">
+
+    <!-- Начин 2: <style> в <head>. Тук само за да покажем, че съществува. -->
+    <style>
+        .from-style-tag { color: #6a1b9a; }
+    </style>
+</head>
+<body id="top">
+    <header class="page-header">
+        <h1>Примери: CSS (част 1)</h1>
+        <p>Всеки раздел отговаря на раздел от лекцията.</p>
+    </header>
+
+    <main>
+
+        <!-- ===================================================== -->
+        <!-- 1. ТРИ НАЧИНА ДА ДОБАВИМ CSS                          -->
+        <!-- ===================================================== -->
+        <section id="s-nachini">
+            <h2>1. Три начина да добавим CSS</h2>
+            <div class="demo">
+                <!-- Начин 1: style атрибут. Важи само за този елемент. Избягвайте. -->
+                <p style="color: #b5373a;">Червен параграф от <code>style</code> атрибут.</p>
+
+                <!-- Начин 2: правилото е в <style> в <head> -->
+                <p class="from-style-tag">Лилав параграф от <code>&lt;style&gt;</code> в <code>&lt;head&gt;</code>.</p>
+
+                <!-- Начин 3: правилото е във външния файл -->
+                <p class="from-file">Син параграф от външния файл.</p>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 2. СИНТАКСИС                                          -->
+        <!-- ===================================================== -->
+        <section id="s-sintaksis">
+            <h2>2. Синтаксис</h2>
+            <p>
+                Цветът и размерът на заглавията и височината на реда на параграфите
+                на цялата страница идват от правилата в началото на CSS файла.
+            </p>
+            <div class="demo">
+                <h3>Заглавие h3</h3>
+                <p>Параграф с <code>line-height: 1.6</code>.</p>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 3. СЕЛЕКТОРИ                                          -->
+        <!-- ===================================================== -->
+        <section id="s-selektori">
+            <h2>3. Селектори</h2>
+            <p>Това е първият параграф след h2: по-голям е заради <code>h2 + p</code>.</p>
+
+            <div class="demo">
+                <h3>Основни</h3>
+                <nav class="menu" aria-label="Примерно меню">
+                    <ul>
+                        <li><a href="#s-selektori">Начало</a></li>
+                        <li><a href="#s-kaskada" id="current">Курсове</a></li>
+                        <li><a href="https://www.fmi.uni-sofia.bg/">ФМИ</a></li>
+                    </ul>
+                </nav>
+                <p class="price">12,50 лв.</p>
+
+                <h3>Още селектори</h3>
+                <ul class="list">
+                    <li>Първата точка е удебелена (<code>li:first-child</code>)</li>
+                    <li>Втора точка</li>
+                    <li>Трета точка</li>
+                </ul>
+
+                <table>
+                    <caption>Редуващи се цветове (<code>tr:nth-child(2n)</code>)</caption>
+                    <thead>
+                        <tr><th scope="col">Предмет</th><th scope="col">Кредити</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Уеб технологии</td><td>5</td></tr>
+                        <tr><td>Бази данни</td><td>6</td></tr>
+                        <tr><td>Алгоритми</td><td>7</td></tr>
+                        <tr><td>Операционни системи</td><td>5</td></tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    <label for="demo-email">Имейл</label>
+                    <input id="demo-email" type="email" placeholder="ivan@example.com">
+                    <button type="button">Бутон</button>
+                </p>
+                <p>Кликнете в полето (<code>:focus</code>) или стигнете до бутона с Tab (<code>:focus-visible</code>).</p>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 4. КАСКАДА, СПЕЦИФИЧНОСТ, НАСЛЕДЯВАНЕ                 -->
+        <!-- ===================================================== -->
+        <section id="s-kaskada">
+            <h2>4. Каскада и специфичност</h2>
+            <div class="demo">
+                <!-- p (таг) казва синьо, .note (клас) казва зелено. Класът печели. -->
+                <p class="note">Какъв цвят съм? (зелен: класът бие тага)</p>
+
+                <!-- #special (id) бие .note (клас) -->
+                <p id="special" class="note">Лилав: id бие клас.</p>
+
+                <!-- Две правила .badge с еднаква специфичност: печели последното -->
+                <p><span class="badge">Зелен фон: печели последното правило</span></p>
+
+                <!-- !important бие дори id. Само за пример. -->
+                <p id="special-2" class="forced">Оранжев: <code>!important</code> бие всичко.</p>
+
+                <!-- Наследяване -->
+                <div class="parent">
+                    <p>Червен и наклонен, като родителя, но без рамка: рамката не се наследява.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 6. ЦВЕТОВЕ                                            -->
+        <!-- (раздел 5 е за DevTools: няма код)                    -->
+        <!-- ===================================================== -->
+        <section id="s-cvetove">
+            <h2>6. Цветове</h2>
+            <div class="demo">
+                <h3>Един и същ цвят по пет начина</h3>
+                <p>
+                    <span class="swatch c-name">tomato</span>
+                    <span class="swatch c-hex">#ff6347</span>
+                    <span class="swatch c-rgb">rgb()</span>
+                    <span class="swatch c-hsl">hsl()</span>
+                    <span class="swatch c-alpha">40%</span>
+                </p>
+
+                <h3>По-тъмен вариант с HSL</h3>
+                <p><button type="button" class="btn">Посочете ме</button></p>
+
+                <h3>Контраст</h3>
+                <p>
+                    <span class="swatch low-contrast">Около 2 : 1 ❌</span>
+                    <span class="swatch good-contrast">Над 4.5 : 1 ✅</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 7. МЕРНИ ЕДИНИЦИ                                      -->
+        <!-- ===================================================== -->
+        <section id="s-edinici">
+            <h2>7. Мерни единици</h2>
+            <div class="demo">
+                <div class="hero">
+                    <p class="hero-title">Висок 40% от прозореца (<code>40vh</code>)</p>
+                </div>
+
+                <div class="half">Половината от ширината на родителя (<code>50%</code>)</div>
+
+                <div class="card">Карта с <code>padding: 1.5em</code> и рамка <code>1px</code>.</div>
+
+                <h3>Капанът с em</h3>
+                <ul class="em-list">
+                    <li>Ниво 1 (1.2em)
+                        <ul>
+                            <li>Ниво 2: по-голямо
+                                <ul>
+                                    <li>Ниво 3: още по-голямо</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="rem-list">
+                    <li>Ниво 1 (1.2rem)
+                        <ul>
+                            <li>Ниво 2: същото
+                                <ul>
+                                    <li>Ниво 3: същото</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 8. ТЕКСТ И ШРИФТОВЕ                                   -->
+        <!-- ===================================================== -->
+        <section id="s-tekst">
+            <h2>8. Текст и шрифтове</h2>
+            <div class="demo">
+                <!-- В HTML-а пише нормално; главните букви са от CSS -->
+                <p class="title-upper">Регистрация</p>
+
+                <p>Цена: <span class="old-price">15 лв.</span> 12 лв.</p>
+
+                <p class="justified">
+                    Този абзац е подравнен двустранно с text-align: justify. Редовете стигат
+                    и до левия, и до десния край, а браузърът разтяга интервалите между думите.
+                    Така изглеждат колоните във вестниците.
+                </p>
+
+                <p>Код: <code>console.log("Здравей")</code></p>
+
+                <p><span class="light">Тънък (300)</span> · нормален · <span class="heavy">дебел (800)</span></p>
+
+                <p class="quote">Наклонен, удебелен, Georgia: кратък запис font.</p>
+                <p class="plain">Verdana: кратък запис само с размер и семейство.</p>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 9. ФОН                                                -->
+        <!-- ===================================================== -->
+        <section id="s-fon">
+            <h2>9. Фон</h2>
+            <div class="demo">
+                <div class="bg-box bg-color">Само цвят</div>
+                <div class="bg-box bg-gradient">Градиент: „картинка" без файл</div>
+                <div class="bg-box bg-dots">Повтаряща се шарка</div>
+                <!-- snimka.jpg нарочно липсва: виждате резервния цвят, а текстът се чете -->
+                <div class="bg-box bg-photo">Снимка с резервен цвят</div>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 10. DISPLAY                                           -->
+        <!-- ===================================================== -->
+        <section id="s-display">
+            <h2>10. Display</h2>
+            <div class="demo">
+                <h3>Хоризонтално меню без flex</h3>
+                <nav aria-label="Второ примерно меню">
+                    <ul class="inline-menu">
+                        <li><a href="#s-display">Програма</a></li>
+                        <li><a href="#s-display">Лектори</a></li>
+                        <li><a href="#s-display">Контакти</a></li>
+                    </ul>
+                </nav>
+
+                <h3>Етикет в текста</h3>
+                <p>Тази статия е за <span class="tag">HTML</span> и <span class="tag">CSS</span>.</p>
+
+                <h3>Линк като блок</h3>
+                <a class="big-link" href="#s-display">Цялата лента може да се кликне</a>
+
+                <h3>Как да скрием елемент?</h3>
+                <p class="abc">display: none →
+                    <span class="letter">A</span><span class="letter hide-display">B</span><span class="letter">C</span>
+                </p>
+                <p class="abc">visibility: hidden →
+                    <span class="letter">A</span><span class="letter hide-visibility">B</span><span class="letter">C</span>
+                </p>
+                <p class="abc">opacity: 0 →
+                    <span class="letter">A</span><span class="letter hide-opacity">B</span><span class="letter">C</span>
+                </p>
+
+                <h3>Визуално скрит етикет</h3>
+                <p>
+                    <!-- Етикетът не се вижда, но екранният четец го чете -->
+                    <label for="demo-search" class="visually-hidden">Търсене в курсовете</label>
+                    <input id="demo-search" type="search" placeholder="Търсене…">
+                </p>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 11. BOX MODEL                                         -->
+        <!-- ===================================================== -->
+        <section id="s-box">
+            <h2>11. Box model</h2>
+            <div class="demo">
+                <h3>content-box срещу border-box</h3>
+                <div class="box-content">content-box: 350px на екрана</div>
+                <div class="box-border">border-box: точно 300px</div>
+
+                <h3>Кратки записи</h3>
+                <p><button type="button" class="btn-pad">padding: 0.5rem 1.5rem</button></p>
+                <div class="frame">border-width: 4px 1px</div>
+
+                <h3>Центриране</h3>
+                <div class="centered">width: 400px; margin: 0 auto</div>
+
+                <h3>Сливане на margin-и</h3>
+                <div class="first">margin-bottom: 20px</div>
+                <div class="second">margin-top: 30px → между нас има 30px, не 50px</div>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 12. POSITION                                          -->
+        <!-- ===================================================== -->
+        <section id="s-position">
+            <h2>12. Position</h2>
+            <div class="demo">
+                <h3>relative</h3>
+                <p>Нормален текст <span class="nudge">отместен с relative</span> нормален текст.</p>
+
+                <h3>absolute в relative родител</h3>
+                <div class="card-pos">
+                    <span class="badge-pos">Ново</span>
+                    <p>Значката е в горния десен ъгъл на картата.</p>
+                </div>
+
+                <h3>sticky</h3>
+                <div class="sticky-demo">
+                    <p class="sticky-title">Аз оставам горе, докато скролирате тази кутия</p>
+                    <p>Ред 1</p><p>Ред 2</p><p>Ред 3</p><p>Ред 4</p><p>Ред 5</p>
+                    <p>Ред 6</p><p>Ред 7</p><p>Ред 8</p><p>Ред 9</p><p>Ред 10</p>
+                </div>
+
+                <h3>fixed</h3>
+                <p>Бутонът „Нагоре" в долния десен ъгъл на екрана е с <code>position: fixed</code>.</p>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 13. FLOAT + CLEAR                                     -->
+        <!-- ===================================================== -->
+        <section id="s-float">
+            <h2>13. Float + clear</h2>
+            <div class="demo">
+                <div class="contains-floats">
+                    <!-- Мястото на снимка: оцветена кутия, само за примера -->
+                    <div class="float-photo">Снимка</div>
+                    <p>
+                        Този текст обтича „снимката" вдясно, защото тя е с float: right.
+                        Когато текстът стане по-дълъг от снимката, той продължава под нея
+                        през цялата ширина. Рамката около всичко е на родителя: тя обхваща
+                        и снимката, защото родителят е с display: flow-root.
+                    </p>
+                    <p class="after-photo">Този параграф е с clear: both и винаги започва под снимката.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 14. ДРУГИ СВОЙСТВА                                    -->
+        <!-- ===================================================== -->
+        <section id="s-drugi">
+            <h2>14. Други полезни свойства</h2>
+            <div class="demo">
+                <h3>z-index</h3>
+                <div class="layers">
+                    <div class="layer red">z-index: 1</div>
+                    <div class="layer blue">z-index: 2</div>
+                </div>
+
+                <h3>opacity</h3>
+                <p class="faded">Избледнял текст (opacity: 0.5)</p>
+
+                <h3>overflow: auto</h3>
+                <div class="scroll-box">
+                    <p>Кутията е висока само 100px.</p>
+                    <p>Съдържанието е повече,</p>
+                    <p>затова се появява скролбар.</p>
+                    <p>С overflow: auto</p>
+                    <p>той се появява само при нужда.</p>
+                </div>
+
+                <h3>vertical-align</h3>
+                <table class="va-table">
+                    <tbody>
+                        <tr>
+                            <td class="tall">Висока клетка</td>
+                            <td>Съдържанието е в средата</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>cursor</h3>
+                <p>
+                    <button type="button" class="clickable">cursor: pointer</button>
+                    <button type="button" disabled>cursor: not-allowed</button>
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- position: fixed: винаги в долния десен ъгъл на екрана -->
+    <a href="#top" class="to-top">Нагоре ↑</a>
+</body>
+</html>
