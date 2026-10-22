@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кафене „Алгоритъм“</title>
+</head>
+<body>
+    <header>
+        <center>
+            <h1>Кафене „Алгоритъм“</h1>
+        </center>
+        <p align="right">Кафето на ФМИ от 2010 г.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#order">Поръчка</a></li>
+            <li><a href="#location">Как да ни намерите</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="divider" />
+
+        <section id="Menu">
+            <b>Меню</b>
+
+            <table border="1">
+                <tr>
+                    <td><b>Напитка</b></td>
+                    <td><b>Цена</b></td>
+                </tr>
+                <tr>
+                    <td>Еспресо</td>
+                    <td>2,50 лв.</td>
+                </tr>
+                <tr>
+                    <td>Капучино</td>
+                    <td>3,80 лв.</td>
+                </tr>
+                <tr>
+                    <td>Чай</td>
+                    <td>2,00 лв.</td>
+                </tr>
+            </table>
+
+            <h3>Речник на баристата</h3>
+            <dl>
+                <li><dt>Ристрето</dt></li>
+                <li><dd>Още по-късо и силно еспресо.</dd></li>
+                <li><dt>Лунго</dt></li>
+                <li><dd>Еспресо с повече вода.</dd></li>
+            </dl>
+
+            <p>Съвет: в HTML новият ред се пише с <br> вместо с Enter.</p>
+        </section>
+
+        <section id="order">
+            <h2>Поръчка</h2>
+
+            <form method="get">
+                <p>
+                    <label>Име</label>
+                    <input id="name" name="name" type="text" required>
+                </p>
+
+                <p>
+                    <label for="qty">Брой</label>
+                    <input id="qty" type="number" min="1" max="10" value="1">
+                </p>
+
+                <p>Размер:</p>
+                <p>
+                    <label><input type="radio" name="size" value="small"> Малко</label>
+                    <label><input type="radio" name="cup-size" value="large"> Голямо</label>
+                </p>
+
+                <p>
+                    <label for="note">Бележка към баристата</label><br>
+                    <textarea id="note" name="note" disabled="false"></textarea>
+                </p>
+
+                <button type="submit">Поръчай</button>
+                <button>Откажи</button>
+            </form>
+        </section>
+
+        <section id="location">
+            <h2>Как да ни намерите</h2>
+            <iframe src="https://www.google.com/" width="400" height="300"></iframe>
+
+            <h3>Видео от кафенето</h3>
+            <video width="320" height="240">
+                <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+            </video>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Кафене „Алгоритъм“</p>
+    </footer>
+</body>
+</html>
