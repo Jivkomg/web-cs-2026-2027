@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak баница</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main>
+        <article>
+            <header>
+                <h1>Рецепта за баница</h1>
+                <nav>
+                    <ul class="display-in-row">
+                        <li><a href="#intro">Въведение</a></li>
+                        <li><a href="#details">Детайли</a></li>
+                        <li><a href="#ingredients">Продукти</a></li>
+                        <li><a href="#preparation">Рецепта</a></li>
+                        <li><a href="#macros">Макроси</a></li>
+                        <li><a href="#comments">Коментирай</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <section id="intro">
+                <h2>Въведение</h2>
+                <p>
+                    <span>Тази рецепта е много хубава, защото веднъж я направих и беше много по-добра от тази на един
+                        приятел. Даже предложиха да сменим неговата с моята за Нова година, но някои хора казаха, че
+                        традицията е да използваме неговата, въпреки че това не е вярно, понеже той беше идвал само от
+                        1–2 години на Нова година!</span>
+                </p>
+            </section>
+
+            <section id="details">
+                <h2>Детайли</h2>
+                <dl>
+                    <dt>
+                        Трудност
+                    </dt>
+                    <dd>
+                        <meter min="0" max="5" value="2">2 от 5</meter>
+                        2 от 5
+                    </dd>
+                    <dt>
+                        Време
+                    </dt>
+                    <dd>
+                        <p>Приготвяне:15 минути</p>
+                        <p>Готвене:45 минути</p>
+                    </dd>
+                    <dt>
+                        Количество
+                    </dt>
+                    <dd>
+                        <p>Около 1000-1500 грама, 8 порции</p>
+                    </dd>
+                </dl>
+            </section>
+
+            <section id="ingredients">
+
+                <h2>Продукти</h2>
+                <ol>
+                    <li>Кори за баница</li>
+                    <li>Яйца - 5 броя</li>
+                    <li>Сирене - 200–300 грама</li>
+                    <li>Масло - 100–200 грама</li>
+                    <li>Олио - 150 мл</li>
+                    <li>Сол - 1 чаена лъжичка</li>
+                </ol>
+
+            </section>
+            <section id="preparation">
+
+                <h2>Приготвяне</h2>
+                <p>
+                    <span>Не помня как точно се готвеше (понеже беше преди 2 години), така че сега е малко free
+                        style.</span>
+                    <span>
+                        Ще направим смес за баницата. Първо слагаме маслото да се разтопи в микровълнова фурна. През
+                        това време разбиваме яйцата. Слагаме малко сол в яйцата. Смесваме олиото с маслото и бъркаме.
+                    </span>
+                    <span>
+                        Тук аз не споменах, ама това е вита баница. Вземаме два слоя от корите и слагаме единия на
+                        работния плот. Малко от сместа с масло и яйце се разстила равномерно върху тази кора. Не
+                        забравяйте да оставите масло за финала. Слагаме другия слой отгоре.
+                        След това почваме да завиваме баницата, докато не стане като пура или руло. След това я слагаме
+                        в тенджерата, като завиваме от стената към центъра.
+                    </span>
+                    <span>
+                        Когато запълним цялата тенджера или свършат съставките, заливаме с останалата смес от масло и
+                        олио. Фурната трябва да е загрята на 180 градуса и слагаме баницата вътре за 40–45 минути.
+                    </span>
+                </p>
+
+                <details>
+                    <summary>Съвети към рецептата</summary>
+                    <p>
+                        Намерете истинска рецепта онлайн, защото тази е само по спомени и може би не е най-добрият
+                        избор.
+                    </p>
+                </details>
+            </section>
+            <section id="macros">
+
+                <h2>Макроси на цялата баница</h2>
+                <table>
+                    <tr>
+                        <th>Макрос</th>
+                        <th>Количество на цялата баница</th>
+                        <th>Количество на 100 грама</th>
+                    </tr>
+                    <tr>
+                        <td>Калории</td>
+                        <td>4700 kcal</td>
+                        <td>470 kcal</td>
+                    </tr>
+                    <tr>
+                        <td>Протеин</td>
+                        <td>102г</td>
+                        <td>6.8г</td>
+                    </tr>
+                    <tr>
+                        <td>Въглехидрати</td>
+                        <td>292г</td>
+                        <td>19.5г</td>
+
+                    </tr>
+                    <tr>
+                        <td>Мазнини</td>
+                        <td>350г</td>
+                        <td>23.3г</td>
+                    </tr>
+                </table>
+            </section>
+        </article>
+
+        <section id="comments">
+            <h2>Коментирай</h2>
+            <form>
+                <p><label for="name">Име:</label></p>
+                <input type="text" id="name" name="name" class="full-length" required>
+                <p><label for="email">Имейл (по желание):</label></p>
+                <input type="email" id="email" name="email" class="full-length">
+
+                <fieldset id="rating">
+                    <legend>Оценка:</legend>
+                    <label><input type="radio" name="rating" value="1" required>1 - лошо</label>
+                    <label> <input type="radio" name="rating" value="2"> 2</label>
+                    <label> <input type="radio" name="rating" value="3"> 3</label>
+                    <label> <input type="radio" name="rating" value="4"> 4</label>
+                    <label> <input type="radio" name="rating" value="5"> 5 - много добро</label>
+                </fieldset>
+
+                <p><label for="message">Съобщение:</label></p>
+                <textarea id="message" name="message" class="full-length" required></textarea>
+                <p><button type="submit">Изпрати</button></p>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            <span>
+                <strong>
+                    Автор: Цецо
+                </strong>
+            </span>
+            <span>
+                <strong>
+                    Ден: 29 Октомври 2026
+                </strong>
+            </span>
+
+            <span class="on-right">
+                <a class="hyperlink-additional"
+                    href="https://bg.wikipedia.org/wiki/%D0%9F%D0%B0%D0%BB%D0%B0%D1%87%D0%B8%D0%BD%D0%BA%D0%B0">Какво
+                    е
+                    палачинка?</a>
+            </span>
+        </p>
+    </footer>
+</body>
+
+</html>
