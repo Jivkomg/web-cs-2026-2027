@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Списък със задачи</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <main class="app">
+        <h1>Списък със задачи</h1>
+
+        <form id="add-form" class="add-form">
+            <label for="new-todo">Нова задача</label>
+            <input id="new-todo" type="text" placeholder="Например: да науча fetch">
+            <button type="submit">Добави</button>
+        </form>
+        <p id="form-message" class="message"></p>
+
+        <p class="filters">
+            <button type="button" class="filter active" data-filter="all">Всички</button>
+            <button type="button" class="filter" data-filter="done">Изпълнени</button>
+            <button type="button" class="filter" data-filter="open">Неизпълнени</button>
+        </p>
+
+        <p id="status" class="message"></p>
+        <ul id="list" class="list"></ul>
+        <p id="summary" class="summary"></p>
+    </main>
+</body>
+</html>

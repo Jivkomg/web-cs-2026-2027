@@ -1,0 +1,64 @@
+body {
+    max-width: 40rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.list {
+    padding: 0;
+    list-style: none;
+}
+
+.list li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.message.error {
+    color: #c62828;
+}
+
+/* Итерация 2: клик и изпълнени задачи */
+.list li {
+    cursor: pointer;
+}
+
+.list li:hover {
+    background-color: #f2f5f9;
+}
+
+.list li.done {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Итерация 3: брояч */
+.summary {
+    font-weight: bold;
+}
+
+/* Итерация 4: форма */
+.add-form label {
+    display: block;
+    font-weight: bold;
+}
+
+.add-form input {
+    width: 70%;
+    padding: 0.4rem;
+    font: inherit;
+}
+
+button {
+    padding: 0.4rem 0.8rem;
+    font: inherit;
+    cursor: pointer;
+}
+
+/* Итерация 5: активният филтър */
+.filter.active {
+    background-color: #1f4e79;
+    color: #fff;
+}
