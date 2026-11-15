@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: bisque;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    width: 90%;
+    max-width: 45rem;
+    margin: auto;
+}
+
+header {
+    border: 5px black solid;
+    padding: 1rem;
+}
+
+footer {
+    background-color: rgb(240, 240, 240);
+    padding: 1rem;
+}
+
+footer p {
+    display: flex;
+    gap: 1rem;
+}
+
+
+nav a {
+    display: inline-block;
+    padding: 0.5rem;
+    border: 2px solid gray;
+
+    font-size: 1.5rem;
+    color: rgb(64, 64, 64);
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: lightblue;
+}
+
+nav ul li {
+    margin: 0.5rem;
+}
+
+section {
+    margin-top: 0.2rem;
+    padding: 0.5rem;
+
+    border: 2px black solid;
+}
+
+input,
+textarea {
+    background-color: whitesmoke;
+    font-size: 1.2rem;
+
+}
+
+button {
+    background-color: rgb(64, 64, 64);
+    color: white;
+    font-size: 1.5rem;
+}
+
+label {
+    font-size: 1.20rem;
+    font-weight: bold;
+}
+
+fieldset {
+    margin-top: 1rem;
+    border: 2px solid black;
+    border-radius: 1rem;
+}
+
+fieldset label {
+    font-weight: normal;
+    font-size: 1rem;
+    padding: 1rem;
+
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1.12rem;
+}
+
+details {
+    background-color: lightgray;
+    padding: 1rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+caption {
+    text-align: left;
+    margin: 1rem;
+}
+
+table th,
+table td {
+    border: 1px solid black;
+    text-align: center;
+    font-size: 1.12rem;
+}
+
+thead th {
+    color: honeydew;
+    background-color: darkslategray;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: lightskyblue;
+}
+
+tbody tr:nth-child(even) {
+    background-color: lightcoral;
+}
+
+
+/* general use classes */
+
+.full-length {
+    width: 100%;
+}
+
+.on-right {
+    /* I couldn't figure out text-align, so I used this */
+    margin-left: auto;
+}
+
+.hyperlink-additional {
+    color: rgb(68, 68, 68);
+    text-align: right;
+}
+
+.display-in-row li {
+    display: inline-block;
+}
