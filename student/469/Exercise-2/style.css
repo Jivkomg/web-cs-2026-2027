@@ -7,66 +7,87 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-html body {
-    max-width: 80%;
+body {
+    width: 90%;
+    max-width: 45rem;
     margin: auto;
-
 }
 
-body header {
+header {
     border: 5px black solid;
     padding: 1rem;
-    margin: 2rem;
-}
-
-main {
-    margin: 2rem;
 }
 
 footer {
-    background-color: lightgray;
+    background-color: rgb(240, 240, 240);
     padding: 1rem;
-    opacity: 0.7;
 }
 
+footer p {
+    display: flex;
+    gap: 1rem;
+}
+
+
 nav a {
+    display: inline-block;
+    padding: 0.5rem;
+    border: 2px solid gray;
+
     font-size: 1.5rem;
-    color: #404040;
+    color: rgb(64, 64, 64);
     text-decoration: none;
 }
 
-nav ul li {
-    border: 2px solid gray;
-    padding: 0.5rem;
-    width: auto;
-    margin: 1rem;
-    list-style-type: none;
-}
-
-nav li:hover {
+nav a:hover {
     background-color: lightblue;
 }
 
-
-main article section {
-    border: 2px black solid;
-    padding: 0.5rem;
-    margin-top: 0.2rem;
-
+nav ul li {
+    margin: 0.5rem;
 }
 
+section {
+    margin-top: 0.2rem;
+    padding: 0.5rem;
 
-#comments input,
-#comments textarea {
+    border: 2px black solid;
+}
+
+input,
+textarea {
     background-color: whitesmoke;
     font-size: 1.2rem;
 
 }
 
-#comments button {
-    background-color: #404040;
+button {
+    background-color: rgb(64, 64, 64);
     color: white;
-    font-size: x-large;
+    font-size: 1.5rem;
+}
+
+label {
+    font-size: 1.20rem;
+    font-weight: bold;
+}
+
+fieldset {
+    margin-top: 1rem;
+    border: 2px solid black;
+    border-radius: 1rem;
+}
+
+fieldset label {
+    font-weight: normal;
+    font-size: 1rem;
+    padding: 1rem;
+
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1.12rem;
 }
 
 details {
@@ -74,60 +95,34 @@ details {
     padding: 1rem;
 }
 
-
 table {
     border-collapse: collapse;
+    width: 100%;
 }
 
-table th {
-    color: honeydew;
-    background-color: darkslategray;
-}
-
-table tr:nth-child(even) {
-    background-color: lightcoral;
-}
-
-table tr:nth-child(odd) {
-    background-color: lightskyblue;
+caption {
+    text-align: left;
+    margin: 1rem;
 }
 
 table th,
 table td {
     border: 1px solid black;
     text-align: center;
-    font-size: large;
+    font-size: 1.12rem;
 }
 
-table {
-    width: 100%;
+thead th {
+    color: honeydew;
+    background-color: darkslategray;
 }
 
-
-#comments label {
-    font-size: larger;
-    font-weight: bold;
+tbody tr:nth-child(odd) {
+    background-color: lightskyblue;
 }
 
-#comments fieldset {
-    margin-top: 1rem;
-}
-
-#comments fieldset label {
-    font-weight: normal;
-    font-size: medium;
-    padding: 1rem;
-
-}
-
-#comments fieldset legend {
-    font-weight: bold;
-    font-size: large;
-}
-
-form #rating {
-    border: 2px solid black;
-    border-radius: 1rem;
+tbody tr:nth-child(even) {
+    background-color: lightcoral;
 }
 
 
@@ -137,13 +132,14 @@ form #rating {
     width: 100%;
 }
 
-
 .on-right {
-    float: right;
+    /* I couldn't figure out text-align, so I used this */
+    margin-left: auto;
 }
 
 .hyperlink-additional {
-    color: black;
+    color: rgb(68, 68, 68);
+    text-align: right;
 }
 
 .display-in-row li {
